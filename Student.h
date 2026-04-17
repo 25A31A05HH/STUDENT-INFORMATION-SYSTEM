@@ -14,8 +14,9 @@ private:
 public:
     void inputDetails();
     void inputMarks();
-    void displayReport();
     float calculateAverage();
+    string getGrade(float avg);
+    void displayReport();
 };
 
 #endif
