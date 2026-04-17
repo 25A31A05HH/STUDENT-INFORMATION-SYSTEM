@@ -39,3 +39,7 @@ void Student::displayReport() {
     cout << "Average: " << avg << endl;
     cout << "Grade: " << getGrade(avg) << endl;
 }
+
+int Student::getID() {
+    return id;
+}
