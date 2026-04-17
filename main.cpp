@@ -31,7 +31,7 @@ int main() {
                 break;
 
             default:
-                cout << "Invalid choice! Please try again.\n";
+                cout << "Invalid choice! Try again.\n";
         }
 
     } while (choice != 4);
