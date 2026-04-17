@@ -1,0 +1,45 @@
+METHODOLOGY: STUDENT INFORMATION SYSTEM
+
+Step 1: Requirement Analysis
+The system is designed to manage student records including name, ID, marks, and academic performance.
+
+Step 2: System Design
+The system follows Object-Oriented Programming (OOP) principles.
+A Student class is created to store and manage student data.
+
+Step 3: Data Structure Selection
+A vector is used to store multiple student objects dynamically.
+
+Step 4: Implementation
+The program is implemented using C++.
+A menu-driven approach is used to allow user interaction.
+Functions are created for:
+    - Inputting student details
+    - Entering marks
+    - Calculating average
+    - Assigning grades
+    - Displaying reports
+
+Step 5: Processing Logic
+The system calculates the average marks of each student.
+Based on the average, grades are assigned (A+, A, B, C, D, F).
+
+Step 6: Searching Mechanism
+Students are searched using their unique ID.
+A loop is used to find the matching student in the list.
+
+Step 7: Output Generation
+The system displays student details along with average marks and grade.
+
+Step 8: Testing
+The program is tested with different inputs to ensure correctness.
+Invalid inputs and edge cases are handled.
+
+Step 9: Future Enhancements
+The system can be improved by adding:
+    - File handling for data storage
+    - GPA/CGPA calculation
+    - Sorting and ranking
+    - Graphical User Interface (GUI)
+
+Step 10: End
