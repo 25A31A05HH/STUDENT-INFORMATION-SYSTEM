@@ -17,6 +17,7 @@ public:
     float calculateAverage();
     string getGrade(float avg);
     void displayReport();
+    int getID();  // for searching
 };
 
 #endif
