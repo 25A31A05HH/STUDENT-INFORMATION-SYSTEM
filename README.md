@@ -112,10 +112,10 @@ g++ student.cpp -o student
 
 ## 👨‍💻 Author
 
-**Venkata Tejaswi Surimalla**
-**Susmitha Bandela**
-**Naga Ramlal Dodda**
-**Arjun Adithya**
+Venkata Tejaswi Surimalla
+Susmitha Bandela
+Naga Ramlal Dodda
+Arjun Adithya
 ---
 
 ## 📜 License
