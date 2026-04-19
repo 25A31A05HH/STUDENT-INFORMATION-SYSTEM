@@ -1,0 +1,59 @@
+1.Start.
+2.Initialize a pointer h (Head) to NULL.
+3.Display a Menu with options: Add, Search, Modify, Delete, Display, and Exit.
+4.Get the user’s choice.
+5.If choice is:
+  1: Jump to Add Student.
+  2: Jump to Search Student.
+  3: Jump to Modify Student.
+  4: Jump to Delete Student.
+  5: Jump to Display All.
+  6: Exit the program.
+6.Repeat from Step 3 until "Exit" is chosen.
+
+2. Add Student (Insertion at End)
+1.Create a new node (cn).
+2.Input student data (Name, Roll No, Aadhar, GPA, etc.) into the node.
+3.Set cn->link = NULL.
+4.Check: If the list is empty (h == NULL), set h = cn.
+5.Else:
+   1.Traverse from h using a temporary pointer t until the last node (t->link == NULL).
+   2.Link the last node to the new node: t->link = cn.
+6.Display "Success" and return to Main Menu.
+
+3. Search Student (Linear Search)
+   1.Input the search_roll.
+   2.Start from the head (t = h).
+   3.While t is not NULL:
+   4.If t->roll_no matches search_roll, display all details of t and set found = true. Break loop.
+     Otherwise, move to the next node: t = t->link.
+   5.If found is false, display "Student not found".
+
+4. Modify Student
+   1.Input the search_roll.
+   2.Traverse the list (as in Search).
+   3.If the roll number is found:
+   4.Prompt and input new values for specific fields (Name, Phone, Address, Mail).
+   5.Display "Updated successfully".
+   6.If not found, display "Student not found".
+
+5. Delete Student
+   1.Input the search_roll.
+   2.Use two pointers: t (current) and prev (previous), starting at h.
+   3.Traverse the list:
+   4.If t->roll_no matches search_roll:
+   5.If it’s the first node (prev == NULL), update head: h = t->link.
+   6.Otherwise, bypass the current node: prev->link = t->link.
+   7.Deallocate memory (delete t).
+   8.Set found = true and break.
+   9.Move prev to t and t to t->link.
+   10.If not found, display "Student not found".
+
+6. Display All Students
+   1.Start from t = h.
+   2.If h is NULL, display "No records found".
+   3.Otherwise, while t is not NULL:
+   4.Print the Name, Roll, and Phone of the current node.
+   5.Move to the next node: t = t->link.
+
+7. Stop
