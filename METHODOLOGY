@@ -1,0 +1,21 @@
+Data Structure: A node class represents the student structure, holding data fields (name, Aadhar, phone, marks, etc.) and a pointer node *link to the next node. 
+
+Memory Management: Students are added dynamically to the heap (new node()), allowing the list to grow or shrink without predefined limits. The system uses delete to free memory during deletion.
+
+Linked List Operations:
+Add (Append): Traverses the list from the head (h) to find the last node (while (t->link != NULL)) and connects it to the new node (t->link = cn).
+Search/Modify: Traverses the list comparing user-inputted roll numbers with node data.
+Delete: Identifies the target node and updates the previous node's link to skip the deleted node (prev->link = t->link).
+Input Handling: cin.ignore() is used to clear the input buffer, allowing getline() to read full names and addresses correctly. 
+
+Workflow
+
+Initialize: Head pointer h is initialized to NULL (empty list).
+Menu Loop: A while(true) loop ensures the program runs continuously until the 'Exit' option is chosen.
+Operations: A switch-case block processes the CRUD operations:
+Case 1 (Add): Creates a new node at the end.
+Case 2 (Search): Displays student details if found, or "not found".
+Case 3 (Modify): Updates specific details of a student by ID.
+Case 4 (Delete): Removes a student from the list, handling pointers to maintain structure.
+Case 5 (Display): Iterates through the list to print all entries.
+Case 6 (Exit): Terminates the program. 
