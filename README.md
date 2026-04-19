@@ -110,7 +110,7 @@ g++ student.cpp -o student
 
 ---
 
-## 👨‍💻 Author
+## 👨‍💻 Authors
 
 Venkata Tejaswi Surimalla   
 Susmitha Bandela   
