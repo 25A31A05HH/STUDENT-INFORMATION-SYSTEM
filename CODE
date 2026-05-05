@@ -5,220 +5,254 @@ using namespace std;
 class node
 {
 public:
-    int aadhar_no, apaar_id, phone_no, roll_no;
     string name, address, mail_id;
+    string aadhar_no, phone_no;
+    int apaar_id, roll_no;
     float marks_12th, marks_10th, sem1_gpa;
     node *link;
+
+    node()
+    {
+        link = NULL;
+    }
 };
 
+node *h = NULL;
+
+// 🔹 Check duplicate roll number
+bool isDuplicate(int roll)
+{
+    node *t = h;
+    while (t != NULL)
+    {
+        if (t->roll_no == roll)
+            return true;
+        t = t->link;
+    }
+    return false;
+}
+
+// 🔹 Add Student
+void addStudent()
+{
+    node *cn = new node();
+
+    cin.ignore(1000, '\n');
+
+    cout << "Enter Name: ";
+    getline(cin, cn->name);
+
+    cout << "Enter Roll Number: ";
+    cin >> cn->roll_no;
+
+    if (isDuplicate(cn->roll_no))
+    {
+        cout << "❌ Roll number already exists!\n";
+        delete cn;
+        return;
+    }
+
+    cout << "Enter Aadhar Number: ";
+    cin >> cn->aadhar_no;
+
+    cout << "Enter Apaar ID: ";
+    cin >> cn->apaar_id;
+
+    cout << "Enter Phone Number: ";
+    cin >> cn->phone_no;
+
+    cout << "Enter 10th Marks: ";
+    cin >> cn->marks_10th;
+
+    cout << "Enter 12th Marks: ";
+    cin >> cn->marks_12th;
+
+    cout << "Enter Sem1 CGPA: ";
+    cin >> cn->sem1_gpa;
+
+    cin.ignore(1000, '\n');
+
+    cout << "Enter Address: ";
+    getline(cin, cn->address);
+
+    cout << "Enter Mail ID: ";
+    getline(cin, cn->mail_id);
+
+    if (h == NULL)
+        h = cn;
+    else
+    {
+        node *t = h;
+        while (t->link != NULL)
+            t = t->link;
+        t->link = cn;
+    }
+
+    cout << "✅ Student added successfully!\n";
+}
+
+// 🔹 View Student by Roll Number
+void viewStudent()
+{
+    int roll;
+    cout << "Enter Roll Number: ";
+    cin >> roll;
+
+    node *t = h;
+    while (t != NULL)
+    {
+        if (t->roll_no == roll)
+        {
+            cout << "\n===== STUDENT DETAILS =====\n";
+            cout << "Name: " << t->name << endl;
+            cout << "Roll: " << t->roll_no << endl;
+            cout << "Aadhar: " << t->aadhar_no << endl;
+            cout << "Apaar ID: " << t->apaar_id << endl;
+            cout << "Phone: " << t->phone_no << endl;
+            cout << "10th Marks: " << t->marks_10th << endl;
+            cout << "12th Marks: " << t->marks_12th << endl;
+            cout << "Sem1 CGPA: " << t->sem1_gpa << endl;
+            cout << "Address: " << t->address << endl;
+            cout << "Mail: " << t->mail_id << endl;
+            return;
+        }
+        t = t->link;
+    }
+
+    cout << "❌ Student not found!\n";
+}
+
+// 🔹 Modify Student
+void modifyStudent()
+{
+    int roll;
+    cout << "Enter Roll Number to Modify: ";
+    cin >> roll;
+
+    node *t = h;
+    while (t != NULL)
+    {
+        if (t->roll_no == roll)
+        {
+            cin.ignore(1000, '\n');
+
+            cout << "Enter New Name: ";
+            getline(cin, t->name);
+
+            cout << "Enter New Phone: ";
+            cin >> t->phone_no;
+
+            cin.ignore(1000, '\n');
+
+            cout << "Enter New Address: ";
+            getline(cin, t->address);
+
+            cout << "Enter New Mail ID: ";
+            getline(cin, t->mail_id);
+
+            cout << "✅ Student updated successfully!\n";
+            return;
+        }
+        t = t->link;
+    }
+
+    cout << "❌ Student not found!\n";
+}
+
+// 🔹 Delete Student
+void deleteStudent()
+{
+    int roll;
+    cout << "Enter Roll Number to Delete: ";
+    cin >> roll;
+
+    node *t = h, *prev = NULL;
+
+    while (t != NULL)
+    {
+        if (t->roll_no == roll)
+        {
+            if (prev == NULL)
+                h = t->link;
+            else
+                prev->link = t->link;
+
+            delete t;
+            cout << "✅ Student deleted successfully!\n";
+            return;
+        }
+
+        prev = t;
+        t = t->link;
+    }
+
+    cout << "❌ Student not found!\n";
+}
+
+// 🔹 Display All Students
+void displayAll()
+{
+    node *t = h;
+
+    if (t == NULL)
+    {
+        cout << "No records found!\n";
+        return;
+    }
+
+    cout << "\n===== ALL STUDENTS =====\n";
+
+    while (t != NULL)
+    {
+        cout << "\n------------------------\n";
+        cout << "Name: " << t->name << endl;
+        cout << "Roll: " << t->roll_no << endl;
+        cout << "Phone: " << t->phone_no << endl;
+        cout << "CGPA: " << t->sem1_gpa << endl;
+
+        t = t->link;
+    }
+}
+
+// 🔹 Main Function
 int main()
 {
-    node *h = NULL, *cn, *t;
-    int choice, search_roll;
+    int choice;
 
     while (true)
     {
         cout << "\n===== STUDENT MANAGEMENT SYSTEM =====\n";
         cout << "1. Add Student\n";
-        cout << "2. Search Student\n";
+        cout << "2. View Student (by Roll)\n";
         cout << "3. Modify Student\n";
         cout << "4. Delete Student\n";
         cout << "5. Display All Students\n";
         cout << "6. Exit\n";
-        cout << "Enter your choice: ";
+        cout << "Enter Choice: ";
         cin >> choice;
 
         switch (choice)
         {
         case 1:
-        {
-            cin.ignore(1000, '\n');
-
-            cn = new node();
-
-            cout << "Name: ";
-            getline(cin, cn->name);
-
-            cout << "Roll: ";
-            cin >> cn->roll_no;
-
-            cout << "Aadhar: ";
-            cin >> cn->aadhar_no;
-
-            cout << "Apaar: ";
-            cin >> cn->apaar_id;
-
-            cout << "Phone: ";
-            cin >> cn->phone_no;
-
-            cout << "10th Marks: ";
-            cin >> cn->marks_10th;
-
-            cout << "12th Marks: ";
-            cin >> cn->marks_12th;
-
-            cout << "Sem1 CGPA: ";
-            cin >> cn->sem1_gpa;
-
-            cin.ignore(1000, '\n');
-
-            cout << "Address: ";
-            getline(cin, cn->address);
-
-            cout << "Mail ID: ";
-            getline(cin, cn->mail_id);
-
-            cn->link = NULL;
-
-            if (h == NULL)
-                h = cn;
-            else
-            {
-                t = h;
-                while (t->link != NULL)
-                    t = t->link;
-                t->link = cn;
-            }
-
-            cout << "Student added successfully\n";
+            addStudent();
             break;
-        }
-
         case 2:
-        {
-            cout << "Enter roll number: ";
-            cin >> search_roll;
-
-            t = h;
-            bool found = false;
-
-            while (t != NULL)
-            {
-                if (t->roll_no == search_roll)
-                {
-                    cout << "\n--- Student Details ---\n";
-                    cout << "Name: " << t->name << endl;
-                    cout << "Roll: " << t->roll_no << endl;
-                    cout << "Aadhar: " << t->aadhar_no << endl;
-                    cout << "Apaar ID: " << t->apaar_id << endl;
-                    cout << "Phone: " << t->phone_no << endl;
-                    cout << "Address: " << t->address << endl;
-                    cout << "Mail: " << t->mail_id << endl;
-                    found = true;
-                    break;
-                }
-                t = t->link;
-            }
-
-            if (!found)
-                cout << "Student not found\n";
-
+            viewStudent();
             break;
-        }
-
         case 3:
-        {
-            cout << "Enter roll number to modify: ";
-            cin >> search_roll;
-
-            t = h;
-            bool found = false;
-
-            while (t != NULL)
-            {
-                if (t->roll_no == search_roll)
-                {
-                    cin.ignore(1000, '\n');
-
-                    cout << "Enter new name: ";
-                    getline(cin, t->name);
-
-                    cout << "Enter new phone: ";
-                    cin >> t->phone_no;
-
-                    cin.ignore(1000, '\n');
-
-                    cout << "Enter new address: ";
-                    getline(cin, t->address);
-
-                    cout << "Enter new mail: ";
-                    getline(cin, t->mail_id);
-
-                    cout << "Student updated successfully\n";
-                    found = true;
-                    break;
-                }
-                t = t->link;
-            }
-
-            if (!found)
-                cout << "Student not found\n";
-
+            modifyStudent();
             break;
-        }
-
         case 4:
-        {
-            cout << "Enter roll number to delete: ";
-            cin >> search_roll;
-
-            node *prev = NULL;
-            t = h;
-            bool found = false;
-
-            while (t != NULL)
-            {
-                if (t->roll_no == search_roll)
-                {
-                    if (prev == NULL)
-                        h = t->link;
-                    else
-                        prev->link = t->link;
-
-                    delete t;
-                    cout << "Student deleted successfully\n";
-                    found = true;
-                    break;
-                }
-                prev = t;
-                t = t->link;
-            }
-
-            if (!found)
-                cout << "Student not found\n";
-
+            deleteStudent();
             break;
-        }
-
         case 5:
-        {
-            t = h;
-
-            if (t == NULL)
-            {
-                cout << "No records found\n";
-            }
-            else
-            {
-                cout << "\n--- All Students ---\n";
-                while (t != NULL)
-                {
-                    cout << "\n----------------------\n";
-                    cout << "Name: " << t->name << endl;
-                    cout << "Roll: " << t->roll_no << endl;
-                    cout << "Phone: " << t->phone_no << endl;
-                    t = t->link;
-                }
-            }
+            displayAll();
             break;
-        }
-
         case 6:
             cout << "Exiting...\n";
             return 0;
-
         default:
-            cout << "Invalid choice\n";
+            cout << "❌ Invalid choice!\n";
         }
     }
 }
